@@ -1,0 +1,5 @@
+# OPTIONAL: server-side DeepFace (age/emotion + second-opinion face match).
+# Heavy (~1.5 GB with TensorFlow). The browser already does face match + liveness.
+-r requirements.txt
+deepface>=0.0.93
+tf-keras

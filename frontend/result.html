@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your loan decision — CredAI</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f766e'/%3E%3Cpath d='M16 7l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9v-6z' fill='none' stroke='white' stroke-width='2.2'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/app.css" />
+  <style>
+    .hero { padding: 28px; border-radius: 18px; color: #fff; position: relative; overflow: hidden; margin-top: 22px; }
+    .hero.ok { background: linear-gradient(135deg, #065f46, #0f766e); }
+    .hero.warn { background: linear-gradient(135deg, #92400e, #b45309); }
+    .hero.bad { background: linear-gradient(135deg, #7f1d1d, #b91c1c); }
+    .hero h1 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); margin: 6px 0; }
+    .hero p { opacity: .9; margin: 0; }
+    .hero .pill { background: rgba(255,255,255,.18); color: #fff; border: 0; }
+    .hero .actions { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
+    .hero .btn.ghost { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.35); }
+    .hero .btn.white { background: #fff; color: var(--ink); }
+    .hero::after { content: ""; position: absolute; right: -60px; top: -60px; width: 260px; height: 260px; border-radius: 50%; background: rgba(255,255,255,.07); }
+    .score-wrap { display: grid; place-items: center; }
+    .stat { padding: 16px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--line); }
+    .stat .v { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; }
+    .stat .l { font-size: .78rem; color: var(--muted); font-weight: 600; }
+    .offer { border: 1.5px solid var(--line); border-radius: 14px; padding: 16px; cursor: pointer; background: var(--surface); position: relative; transition: border-color .15s, transform .1s; }
+    .offer:hover { border-color: var(--line-2); }
+    .offer.sel { border-color: var(--brand); box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 15%, transparent); }
+    .offer .rec { position: absolute; top: -10px; right: 12px; }
+    .offer .emi { font-size: 1.5rem; font-weight: 800; }
+    .slider { width: 100%; accent-color: var(--brand); }
+    .factor { display: grid; grid-template-columns: 170px 1fr 1fr; align-items: center; gap: 0; font-size: .88rem; padding: 6px 0; }
+    .factor .lft, .factor .rgt { height: 12px; position: relative; }
+    .factor .lft i { position: absolute; right: 0; height: 100%; background: var(--ok); border-radius: 6px 0 0 6px; }
+    .factor .rgt i { position: absolute; left: 0; height: 100%; background: var(--bad); border-radius: 0 6px 6px 0; }
+    .factor .lft { border-right: 1px solid var(--line-2); }
+    @media (max-width: 640px) { .factor { grid-template-columns: 120px 1fr 1fr; } }
+    .timeline { list-style: none; padding: 0; margin: 0; border-left: 2px solid var(--line); }
+    .timeline li { padding: 4px 0 12px 16px; position: relative; font-size: .88rem; }
+    .timeline li::before { content: ""; position: absolute; left: -6px; top: 9px; width: 10px; height: 10px; border-radius: 50%; background: var(--brand); }
+    .timeline time { display: block; color: var(--muted); font-size: .75rem; font-family: var(--mono); }
+    .reason { padding: 10px 12px; border-radius: 10px; margin-bottom: 8px; font-size: .9rem; }
+    .reason.ok { background: var(--ok-soft); color: #065f46; } .reason.warn { background: var(--warn-soft); color: #92400e; } .reason.bad { background: var(--bad-soft); color: #7f1d1d; } .reason.info { background: var(--info-soft); color: #1e3a8a; }
+    .doughnut { width: 120px; height: 120px; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; margin-top: 18px; align-items: start; }
+    @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } }
+    .sim-out { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+    @media (max-width: 640px) { .sim-out { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="topbar no-print">
+    <div class="container">
+      <a class="logo" href="index.html"><span class="logo-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l8 3v6c0 5.5-3.5 9.5-8 11-4.5-1.5-8-5.5-8-11V5z"/></svg></span><span>Cred<b>AI</b></span></a>
+      <nav class="nav"><a href="apply.html">New application</a><a href="dashboard.html" class="hide-sm">Lender dashboard</a></nav>
+    </div>
+  </header>
+
+  <main class="container" id="root">
+    <div class="skeleton" style="height:180px;margin-top:22px"></div>
+    <div class="grid g3" style="margin-top:18px"><div class="skeleton" style="height:160px"></div><div class="skeleton" style="height:160px"></div><div class="skeleton" style="height:160px"></div></div>
+  </main>
+
+  <div class="overlay modal-center hidden" id="accept-modal">
+    <div class="modal">
+      <h3>Accept this offer?</h3>
+      <div id="accept-body" class="small"></div>
+      <label class="check" style="margin-top:12px"><input type="checkbox" id="kfs-ok" /><span>I have read the Key Fact Statement: rate, EMI, fees and total cost shown above.</span></label>
+      <div class="row" style="margin-top:14px;justify-content:flex-end">
+        <button class="btn ghost" id="accept-cancel">Cancel</button>
+        <button class="btn" id="accept-confirm" disabled>Accept &amp; continue</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer no-print"><div class="container">CredAI is a demonstration platform. Decisions are indicative and not a binding sanction.</div></footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/result.js"></script>
+</body>
+</html>

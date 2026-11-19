@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CredAI — Talk your way to a loan decision</title>
+  <meta name="description" content="Voice-first video KYC loan onboarding in English, Hindi and Kannada. Liveness, face match, explainable credit decision and instant offers." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f766e'/%3E%3Cpath d='M16 7l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9v-6z' fill='none' stroke='white' stroke-width='2.2'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@500;700&family=Noto+Sans+Kannada:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/app.css" />
+  <style>
+    .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding: 56px 0 30px; }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding-top: 32px; } }
+    .hero h1 em { font-style: normal; color: var(--brand); }
+    .hero .lead { font-size: 1.12rem; color: var(--ink-2); max-width: 560px; }
+    .langs { display: flex; gap: 8px; margin: 18px 0 24px; flex-wrap: wrap; }
+    .langs a { padding: 8px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line-2); font-weight: 700; color: var(--ink); }
+    .langs a:hover { border-color: var(--brand); text-decoration: none; }
+    .phone { background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 18px; box-shadow: var(--shadow-lg); max-width: 420px; margin-left: auto; }
+    @media (max-width: 900px) { .phone { margin: 0 auto; } }
+    .phone .top { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .bubble { padding: 9px 13px; border-radius: 14px; font-size: .9rem; margin: 10px 0; max-width: 85%; }
+    .bubble.ai { background: var(--surface-2); border: 1px solid var(--line); border-top-left-radius: 4px; }
+    .bubble.me { background: var(--brand); color: #fff; margin-left: auto; border-top-right-radius: 4px; }
+    .bubble.ok { background: var(--ok-soft); color: var(--ok); font-size: .82rem; padding: 6px 12px; }
+    .mini-form { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 12px; }
+    .mini-form div { background: var(--ok-soft); border-radius: 8px; padding: 6px 9px; font-size: .75rem; }
+    .mini-form b { display: block; font-size: .82rem; color: var(--ink); }
+    .avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--brand); color: #fff; display: grid; place-items: center; font-weight: 800; }
+    section.block { padding: 46px 0 10px; }
+    .step-n { width: 34px; height: 34px; border-radius: 10px; background: var(--brand-soft); color: var(--brand-2); display: grid; place-items: center; font-weight: 800; margin-bottom: 10px; }
+    .feat h3 { margin-top: 4px; }
+    .feat p { color: var(--muted); font-size: .92rem; margin: 0; }
+    .feat .ico { font-size: 1.4rem; }
+    .band { background: var(--ink); color: #e5e7eb; border-radius: 22px; padding: 34px; margin-top: 46px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; }
+    .band h2 { color: #fff; }
+    @media (max-width: 760px) { .band { grid-template-columns: 1fr; } }
+    details { border-bottom: 1px solid var(--line); padding: 14px 0; }
+    summary { cursor: pointer; font-weight: 700; }
+    details p { color: var(--ink-2); margin: 8px 0 0; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <a class="logo" href="index.html"><span class="logo-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l8 3v6c0 5.5-3.5 9.5-8 11-4.5-1.5-8-5.5-8-11V5z"/></svg></span><span>Cred<b>AI</b></span></a>
+      <nav class="nav">
+        <a href="#how" class="hide-sm">How it works</a>
+        <a href="#why" class="hide-sm">Why CredAI</a>
+        <a href="dashboard.html" class="hide-sm">For lenders</a>
+        <a href="apply.html" class="btn sm">Apply now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span id="health" class="pill"><span class="dot pulse"></span>Checking service…</span>
+        <h1 style="margin-top:14px">Talk your way to a <em>loan decision</em> in 5 minutes.</h1>
+        <p class="lead">No forms, no branch visit. Answer a friendly assistant in your own language. Video KYC, liveness and an explainable credit decision happen while you talk.</p>
+        <div class="langs">
+          <a href="apply.html?lang=en">Start in English</a>
+          <a href="apply.html?lang=hi" style="font-family:'Noto Sans Devanagari',var(--font)">हिंदी में शुरू करें</a>
+          <a href="apply.html?lang=kn" style="font-family:'Noto Sans Kannada',var(--font)">ಕನ್ನಡದಲ್ಲಿ ಪ್ರಾರಂಭಿಸಿ</a>
+        </div>
+        <div class="row wrap small muted" style="gap:18px">
+          <span>✓ ₹10,000 – ₹40 lakh</span><span>✓ Rates from 10.5% p.a.</span><span>✓ See exactly why you got your decision</span>
+        </div>
+      </div>
+      <div class="phone" aria-hidden="true">
+        <div class="top"><div class="avatar">A</div><div><b>Asha</b><div class="small muted">CredAI loan assistant · speaking Hindi</div></div><span class="pill ok" style="margin-left:auto"><span class="dot"></span>Live</span></div>
+        <div class="bubble ai">आपकी मासिक आय कितनी है?</div>
+        <div class="bubble me">पैंतालीस हज़ार</div>
+        <div class="bubble ok">✓ Monthly income: <b>₹45,000</b></div>
+        <div class="bubble ai">आपको कितने रुपये का लोन चाहिए?</div>
+        <div class="bubble me">ढाई लाख</div>
+        <div class="bubble ok">✓ Loan amount: <b>₹2,50,000</b></div>
+        <div class="mini-form"><div>Liveness<b>Passed ✓</b></div><div>Face vs PAN<b>81% match</b></div><div>CredAI score<b>781 / 900</b></div><div>EMI<b>₹11,780 / mo</b></div></div>
+      </div>
+    </section>
+
+    <section class="block" id="how">
+      <span class="kicker">How it works</span>
+      <h2>Four steps, one conversation</h2>
+      <div class="grid g4" style="margin-top:16px">
+        <div class="card"><div class="step-n">1</div><h3>Consent &amp; language</h3><p class="muted small">Pick English, Hindi or Kannada. Optionally upload your bank's own PDF form — we only ask what it needs.</p></div>
+        <div class="card"><div class="step-n">2</div><h3>Prove it's you</h3><p class="muted small">A randomised blink-and-turn liveness challenge, then your live face is matched against your PAN or Aadhaar photo.</p></div>
+        <div class="card"><div class="step-n">3</div><h3>Just talk</h3><p class="muted small">Say “2.5 lakh” or “डेढ़ लाख”. Spoken numbers, dates and PAN letters are understood and validated as you go.</p></div>
+        <div class="card"><div class="step-n">4</div><h3>Instant, explained decision</h3><p class="muted small">Get a score, the top reasons behind it, three offers with real EMIs, and a downloadable decision report.</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="why">
+      <span class="kicker">Why CredAI</span>
+      <h2>Built like a real lender, explained like a friend</h2>
+      <div class="grid g3" style="margin-top:16px">
+        <div class="card feat"><div class="ico">🗣️</div><h3>Voice-first, in Indian languages</h3><p>Understands Indian number words (lakh, crore, हज़ार, ಸಾವಿರ), spoken digits for mobile and PAN, and dates in any format. Typing always works too.</p></div>
+        <div class="card feat"><div class="ico">🧠</div><h3>Calibrated ML risk model</h3><p>A LightGBM model on 300k+ real loans. It's corrected to true default probabilities and turned into a 300–900 score with per-factor reasons.</p></div>
+        <div class="card feat"><div class="ico">⚖️</div><h3>Fair by construction</h3><p>Gender is neutralised: the prediction is averaged across genders, so it can never change your outcome.</p></div>
+        <div class="card feat"><div class="ico">📏</div><h3>Affordability first</h3><p>Real underwriting rules: age at maturity, minimum income, and a 50% FOIR cap. You'll never be offered an EMI you can't carry.</p></div>
+        <div class="card feat"><div class="ico">🛡️</div><h3>Fraud engine with receipts</h3><p>Liveness, face match, multiple-faces, age-vs-face, geo, duplicate-PAN and shared-mobile checks — each shown as pass, warn or fail.</p></div>
+        <div class="card feat"><div class="ico">🔐</div><h3>Privacy by design</h3><p>Face analysis runs in your browser. PAN is stored masked and hashed, Aadhaar keeps only its last 4 digits, and video is never uploaded.</p></div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div><span class="kicker" style="color:#94a3b8">For banks &amp; NBFCs</span><h2 style="margin-top:6px">An underwriting desk, not just a form</h2>
+        <p style="margin:0;color:#cbd5e1">Every application lands in a live dashboard: KPIs, review queue, fraud alerts, full transcript, audit trail and one-click approve or reject.</p></div>
+      <a class="btn lg" href="dashboard.html">Open lender dashboard</a>
+    </section>
+
+    <section class="block" style="max-width:820px">
+      <h2>Questions</h2>
+      <details><summary>Which browsers support voice?</summary><p>Voice input works in Chrome, Edge and Samsung Internet. In other browsers you can type your answers — everything else works the same.</p></details>
+      <details><summary>Is my video uploaded?</summary><p>No. Liveness and face matching run locally with face-api.js. Only the result (for example “81% match”) is sent with your application.</p></details>
+      <details><summary>What if I don't know my CIBIL score?</summary><p>Just say “skip”. We use a cautious default and a bureau check happens before disbursal.</p></details>
+      <details><summary>Is this a real loan?</summary><p>CredAI is a working demonstration of a digital lending journey. Decisions are indicative and not a binding sanction.</p></details>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container row between wrap"><span>© CredAI · Vibethon 2026, NMIT Bengaluru</span><span><a href="/docs">API docs</a> · <a href="dashboard.html">Lender dashboard</a></span></div></footer>
+  <script src="js/common.js"></script>
+  <script>Cred.healthPill(document.getElementById("health"));</script>
+</body>
+</html>
